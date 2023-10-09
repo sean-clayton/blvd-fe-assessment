@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
-import { DisifySingleEmailResponse } from "../disify";
 import ValidationItemLabel from "./validation-item-label";
+import { EmailValidationResult } from "../email-validation";
 
 interface ValidationHistoryListItemP {
   index: number;
   email: string;
-  result: DisifySingleEmailResponse;
+  result: EmailValidationResult["result"];
 }
 
 export default function ValidationHistoryListItem({
