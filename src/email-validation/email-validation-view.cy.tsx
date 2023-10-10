@@ -31,6 +31,8 @@ describe("Email Validation", () => {
     cy.get("input:not([disabled])").type("test");
     cy.get("form").submit();
 
+    cy.get("button:not([disabled])").should("exist");
+
     cy.get("input:not([disabled])").type("test");
     cy.get("form").submit();
 

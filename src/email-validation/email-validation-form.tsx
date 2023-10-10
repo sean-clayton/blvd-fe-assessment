@@ -1,38 +1,58 @@
 import { Box, Button, TextField } from "@mui/material";
+import { Formik } from "formik";
 
 interface EmailValidationFormP {
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
-  busy?: boolean;
+  onSubmit?: (email: string) => Promise<void>;
 }
 
 export default function EmailValidationForm({
   onSubmit,
-  busy,
 }: EmailValidationFormP) {
   return (
-    <Box
-      component="form"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        alignItems: "start",
+    <Formik
+      initialValues={{ email: "" }}
+      validate={(values) => {
+        const errors: { email?: boolean } = {};
+        if (!values.email) {
+          errors.email = true;
+        }
       }}
-      aria-label="Email validation form"
-      onSubmit={onSubmit}
-      noValidate
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        if (onSubmit) {
+          await onSubmit(values.email);
+          setSubmitting(false);
+          resetForm();
+        }
+      }}
     >
-      <TextField
-        label="Email"
-        type="email"
-        name="email"
-        fullWidth
-        autoFocus
-        disabled={busy}
-      />
-      <Button type="submit" variant="contained" disabled={busy}>
-        Submit
-      </Button>
-    </Box>
+      {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+        <Box
+          component="form"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            alignItems: "start",
+          }}
+          aria-label="Email validation form"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <TextField
+            label="Email"
+            type="email"
+            name="email"
+            fullWidth
+            autoFocus
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Button type="submit" variant="contained" disabled={isSubmitting}>
+            Submit
+          </Button>
+        </Box>
+      )}
+    </Formik>
   );
 }
