@@ -25,7 +25,15 @@ export default function EmailValidationForm({
         }
       }}
     >
-      {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+      {({
+        values,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+        isValid,
+        dirty,
+      }) => (
         <Box
           component="form"
           sx={{
@@ -48,7 +56,11 @@ export default function EmailValidationForm({
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <Button type="submit" variant="contained" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={!dirty || !isValid || isSubmitting}
+          >
             Submit
           </Button>
         </Box>

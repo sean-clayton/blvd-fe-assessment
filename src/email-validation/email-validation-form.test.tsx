@@ -69,4 +69,18 @@ describe("EmailValidationForm", () => {
 
     expect(screen.getByRole("form").getAttribute("novalidate")).toBe("");
   });
+
+  it("Doesn't let you submit until the input has a value", async () => {
+    render(<EmailValidationForm />);
+    const input = screen.getByLabelText("Email");
+    const button = screen.getByRole("button");
+
+    expect(button.getAttribute("disabled")).toBe("");
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: "Test" } });
+    });
+
+    expect(button.getAttribute("disabled")).toBe(null);
+  });
 });
