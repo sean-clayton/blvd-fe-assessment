@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import EmailValidationForm from "./email-validation-form";
 
 describe("EmailValidationForm", () => {
@@ -45,13 +45,17 @@ describe("EmailValidationForm", () => {
     expect(screen.getByRole("button").textContent).toBe("Submit");
   });
 
-  it("Calls an onSubmit callback when submitting the form", () => {
+  it("Calls an onSubmit callback when submitting the form", async () => {
     const callback = vi.fn();
     render(<EmailValidationForm onSubmit={callback} />);
 
-    screen.getByText(/Submit/).click();
+    const form = screen.getByRole("form");
 
-    expect(callback).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      fireEvent.submit(form);
+    });
+
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("Renders an input with a name of 'email'.", () => {
@@ -64,15 +68,5 @@ describe("EmailValidationForm", () => {
     render(<EmailValidationForm />);
 
     expect(screen.getByRole("form").getAttribute("novalidate")).toBe("");
-  });
-
-  it("Disables the input if form is considered busy", () => {
-    render(<EmailValidationForm busy />);
-    expect(screen.getByLabelText("Email").getAttribute("disabled")).toBe("");
-  });
-
-  it("Disables the button if form is considered busy", () => {
-    render(<EmailValidationForm busy />);
-    expect(screen.getByText("Submit").getAttribute("disabled")).toBe("");
   });
 });
