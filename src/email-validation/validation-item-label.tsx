@@ -8,7 +8,7 @@ export default function ValidationItemLabel({
   value?: string;
 }) {
   return (
-    <Typography>
+    <Typography component="p" variant="body1">
       {label}: {value}
     </Typography>
   );
