@@ -59,4 +59,10 @@ describe("EmailValidationForm", () => {
 
     expect(screen.getByLabelText("Email").getAttribute("name")).toBe("email");
   });
+
+  it("Renders a form without validation", () => {
+    render(<EmailValidationForm />);
+
+    expect(screen.getByRole("form").getAttribute("novalidate")).toBe("");
+  });
 });
