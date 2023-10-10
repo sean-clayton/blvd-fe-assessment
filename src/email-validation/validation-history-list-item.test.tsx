@@ -47,4 +47,18 @@ describe("ValidationHistoryListItem", () => {
       screen.getByTestId("validation-history-list-item-0").textContent
     ).toContain("Disposable: Yes");
   });
+
+  it("Displays an error message if an error exists", () => {
+    render(
+      <ValidationHistoryListItem
+        index={0}
+        email="errored email"
+        error="error message"
+      />
+    );
+
+    expect(
+      screen.getByTestId("validation-history-list-item-0").textContent
+    ).toContain("Error: error message");
+  });
 });

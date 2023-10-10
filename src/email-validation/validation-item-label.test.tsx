@@ -5,33 +5,26 @@ import ValidationItemLabel from "./validation-item-label";
 describe("ValidationItemLabel", () => {
   it("Renders a Disposable label with the value true correctly.", () => {
     const wrapper = render(
-      <ValidationItemLabel label="Disposable" value={true} />
+      <ValidationItemLabel label="Disposable" value="Yes" />
     );
     expect(wrapper.container.textContent).toContain("Disposable");
     expect(wrapper.container.textContent).toContain("Yes");
   });
 
-  it("Renders a Disposable label with the value false correctly.", () => {
+  it("Renders a Valid Format label with given value.", () => {
     const wrapper = render(
-      <ValidationItemLabel label="Disposable" value={false} />
-    );
-    expect(wrapper.container.textContent).toContain("Disposable");
-    expect(wrapper.container.textContent).toContain("No");
-  });
-
-  it("Renders a Valid Format label with the value false correctly.", () => {
-    const wrapper = render(
-      <ValidationItemLabel label="Valid Format" value={true} />
-    );
-    expect(wrapper.container.textContent).toContain("Valid Format");
-    expect(wrapper.container.textContent).toContain("Yes");
-  });
-
-  it("Renders a Valid Format label with the value false correctly.", () => {
-    const wrapper = render(
-      <ValidationItemLabel label="Valid Format" value={false} />
+      <ValidationItemLabel label="Valid Format" value="No" />
     );
     expect(wrapper.container.textContent).toContain("Valid Format");
     expect(wrapper.container.textContent).toContain("No");
+  });
+
+  it("Renders an Error label with the given error reason.", () => {
+    const wrapper = render(
+      <ValidationItemLabel label="Error" value="Reason" />
+    );
+
+    expect(wrapper.container.textContent).toContain("Error");
+    expect(wrapper.container.textContent).toContain("Reason");
   });
 });

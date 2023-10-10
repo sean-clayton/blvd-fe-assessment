@@ -10,11 +10,12 @@ export default function ValidationHistoryList({
 }: ValidationHistoryListP) {
   return (
     <ol data-testid="validation-history-list">
-      {results.map(({ email, result }, idx) => (
+      {results.map(({ email, result, error }, idx) => (
         <li key={idx}>
           <ValidationHistoryListItem
             email={email}
             result={result}
+            error={error}
             index={idx}
           />
         </li>

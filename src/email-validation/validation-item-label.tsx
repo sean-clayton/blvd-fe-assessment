@@ -4,12 +4,12 @@ export default function ValidationItemLabel({
   label,
   value,
 }: {
-  label: "Disposable" | "Valid Format";
-  value?: boolean;
+  label: "Disposable" | "Valid Format" | "Error";
+  value?: string;
 }) {
   return (
     <Typography>
-      {label}: {value ? "Yes" : "No"}
+      {label}: {value}
     </Typography>
   );
 }
