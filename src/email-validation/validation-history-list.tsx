@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { EmailValidationResult } from "../email-validation";
 import ValidationHistoryListItem from "./validation-history-list-item";
 
@@ -9,7 +10,17 @@ export default function ValidationHistoryList({
   results,
 }: ValidationHistoryListP) {
   return (
-    <ol data-testid="validation-history-list">
+    <Box
+      component="ol"
+      data-testid="validation-history-list"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        listStyleType: "none",
+        p: 0,
+      }}
+    >
       {results.map(({ email, result, error }, idx) => (
         <li key={idx}>
           <ValidationHistoryListItem
@@ -20,6 +31,6 @@ export default function ValidationHistoryList({
           />
         </li>
       ))}
-    </ol>
+    </Box>
   );
 }
