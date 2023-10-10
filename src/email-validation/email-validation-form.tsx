@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 
 interface EmailValidationFormP {
-  onSubmit?: (event: React.FormEvent) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export default function EmailValidationForm({
