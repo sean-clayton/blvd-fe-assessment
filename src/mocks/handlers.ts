@@ -18,6 +18,9 @@ export const handlers = [
       dns: false,
     }
   ),
+  rest.get("https://www.disify.com/api/email/cause-error", (_req, res, ctx) => {
+    return res(ctx.status(403));
+  }),
   rest.get(
     "https://www.disify.com/api/email/another%20test",
     (_req, res, ctx) => {
