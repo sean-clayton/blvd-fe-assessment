@@ -53,4 +53,10 @@ describe("EmailValidationForm", () => {
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
+
+  it("Renders an input with a name of 'email'.", () => {
+    render(<EmailValidationForm />);
+
+    expect(screen.getByLabelText("Email").getAttribute("name")).toBe("email");
+  });
 });

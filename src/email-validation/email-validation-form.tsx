@@ -9,7 +9,7 @@ export default function EmailValidationForm({
 }: EmailValidationFormP) {
   return (
     <form aria-label="Email validation form" onSubmit={onSubmit}>
-      <TextField label="Email" type="email" />
+      <TextField label="Email" type="email" name="email" />
       <Button type="submit">Submit</Button>
     </form>
   );
