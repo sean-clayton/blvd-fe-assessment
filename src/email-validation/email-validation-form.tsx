@@ -27,6 +27,7 @@ export default function EmailValidationForm({
         type="email"
         name="email"
         fullWidth
+        autoFocus
         disabled={busy}
       />
       <Button type="submit" variant="contained" disabled={busy}>

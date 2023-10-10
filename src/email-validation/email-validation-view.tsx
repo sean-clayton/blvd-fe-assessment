@@ -4,11 +4,15 @@ import { EmailValidationResult } from "../email-validation";
 import { getSingleEmail } from "../disify";
 import ValidationHistoryList from "./validation-history-list";
 
+type Status = "Ready" | "Busy";
+
 export default function EmailValidationView() {
   const [results, setResults] = useState<EmailValidationResult[]>([]);
+  const [status, setStatus] = useState<Status>("Ready");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus("Busy");
     const form = event.target;
     if (form instanceof HTMLFormElement) {
       const formData = new FormData(form);
@@ -19,7 +23,9 @@ export default function EmailValidationView() {
         const result = await getSingleEmail(email).then((res) => res.json());
         setResults([{ email, result }, ...results]);
       } catch {
-        setResults([{ email, error: "API Error" }]);
+        setResults([{ email, error: "API Error" }, ...results]);
+      } finally {
+        setStatus("Ready");
       }
     }
   }
@@ -27,7 +33,7 @@ export default function EmailValidationView() {
   return (
     <div>
       <div>
-        <EmailValidationForm onSubmit={handleSubmit} />
+        <EmailValidationForm onSubmit={handleSubmit} busy={status === "Busy"} />
       </div>
       <div>
         <ValidationHistoryList results={results} />

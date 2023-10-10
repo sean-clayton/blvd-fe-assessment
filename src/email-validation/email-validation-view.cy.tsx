@@ -24,4 +24,17 @@ describe("Email Validation", () => {
       "Error: API Error"
     );
   });
+
+  it("Renders multiple results when submitting multiple times.", () => {
+    cy.mount(<EmailValidationView />);
+
+    cy.get("input:not([disabled])").type("test");
+    cy.get("form").submit();
+
+    cy.get("input:not([disabled])").type("test");
+    cy.get("form").submit();
+
+    cy.get("[data-testid=validation-history-list-item-0]").should("exist");
+    cy.get("[data-testid=validation-history-list-item-1]").should("exist");
+  });
 });
