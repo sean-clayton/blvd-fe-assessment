@@ -65,4 +65,14 @@ describe("EmailValidationForm", () => {
 
     expect(screen.getByRole("form").getAttribute("novalidate")).toBe("");
   });
+
+  it("Disables the input if form is considered busy", () => {
+    render(<EmailValidationForm busy />);
+    expect(screen.getByLabelText("Email").getAttribute("disabled")).toBe("");
+  });
+
+  it("Disables the button if form is considered busy", () => {
+    render(<EmailValidationForm busy />);
+    expect(screen.getByText("Submit").getAttribute("disabled")).toBe("");
+  });
 });

@@ -2,10 +2,12 @@ import { Box, Button, TextField } from "@mui/material";
 
 interface EmailValidationFormP {
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  busy?: boolean;
 }
 
 export default function EmailValidationForm({
   onSubmit,
+  busy,
 }: EmailValidationFormP) {
   return (
     <Box
@@ -20,8 +22,14 @@ export default function EmailValidationForm({
       onSubmit={onSubmit}
       noValidate
     >
-      <TextField label="Email" type="email" name="email" fullWidth />
-      <Button type="submit" variant="contained">
+      <TextField
+        label="Email"
+        type="email"
+        name="email"
+        fullWidth
+        disabled={busy}
+      />
+      <Button type="submit" variant="contained" disabled={busy}>
         Submit
       </Button>
     </Box>
