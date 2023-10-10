@@ -12,7 +12,6 @@ export default function EmailValidationView() {
     const form = event.target;
     if (form instanceof HTMLFormElement) {
       const formData = new FormData(form);
-      console.log(formData);
       const email = formData.get("email")?.toString();
       if (!email) return;
       form.reset();
