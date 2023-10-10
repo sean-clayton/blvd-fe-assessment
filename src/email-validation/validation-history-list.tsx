@@ -20,9 +20,10 @@ export default function ValidationHistoryList({
         listStyleType: "none",
         p: 0,
       }}
+      aria-label="Validation history list"
     >
       {results.map(({ email, result, error }, idx) => (
-        <li key={idx}>
+        <li key={idx} aria-label="Validation history list item">
           <ValidationHistoryListItem
             email={email}
             result={result}
