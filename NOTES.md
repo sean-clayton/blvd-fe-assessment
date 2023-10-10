@@ -44,3 +44,13 @@ By utilizing built-in browser primitives, keyboard use is not an issue.
 > You commit your work in small, atomic commits - we practice continuous integration and deployment through small, incrementally deliverable units of work 
 
 Commits were made in succinct chunks with proper subjects.
+
+## Final Thoughts
+
+Had I a bit more time I would have implemented i18n (localization is a form of accessibility, in my opinion).
+I feel quite pleased with the amount of abstraction I've done and the choices I made.
+I didn't do anything that was out of scope and I feel like all of the requirements were met fully.
+It's been a while since I've used cypress and was pretty impressed by the component testing it does -- it was really helpful during development!
+I would like to have added more error handling, but I'm happy with the final result here.
+
+Thanks for the opportunity!
