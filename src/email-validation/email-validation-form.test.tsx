@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import EmailValidationForm from "./email-validation-form";
 
@@ -43,5 +43,14 @@ describe("EmailValidationForm", () => {
     render(<EmailValidationForm />);
 
     expect(screen.getByRole("button").textContent).toBe("Submit");
+  });
+
+  it("Calls an onSubmit callback when submitting the form", () => {
+    const callback = vi.fn();
+    render(<EmailValidationForm onSubmit={callback} />);
+
+    screen.getByText(/Submit/).click();
+
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });
