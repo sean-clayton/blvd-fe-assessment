@@ -5,3 +5,7 @@ export interface DisifySingleEmailResponse {
   dns?: boolean;
   alias?: boolean;
 }
+
+export function getSingleEmail(email: string) {
+  return fetch(`https://www.disify.com/api/email/${email}`);
+}
